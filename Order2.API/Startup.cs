@@ -8,8 +8,14 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using Order2.API.Controllers.Customers.Mapper;
 using Order2.API.Controllers.Customers.Mapper.Addresses;
+using Order2.API.Controllers.Items.Mapper;
+using Order2.API.Controllers.Orders.Mapper.ItemGroups;
+using Order2.API.Controllers.Orders.Mapper.Orders;
+using Order2.API.Services.Items;
 using Order2.Data;
 using Order2.Services.Customers;
+using Order2.Services.Items;
+using Order2.Services.Orders;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Order2.API
@@ -41,6 +47,15 @@ namespace Order2.API
             services.AddScoped<IAddressMapper, AddressMapper>();
             services.AddTransient<CustomerValidator>();
 
+            services.AddScoped<IItemService, ItemService>();
+            services.AddScoped<IItemMapper, ItemMapper>();
+            services.AddTransient<ItemValidator>();
+
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IOrderMapper, OrderMapper>();
+            services.AddScoped<IItemGroupMapper, ItemGroupMapper>();
+            services.AddTransient<OrderValidator>();
+
             services.AddDbContext<Order2DbContext>(options =>
                 options
                 .UseSqlServer("Data Source =.\\SQLExpress; Initial Catalog = Order2Db; Integrated Security = True; ")
@@ -70,4 +85,3 @@ namespace Order2.API
         }
     }
 }
-//test

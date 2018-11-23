@@ -10,9 +10,6 @@ namespace Order2.API.Tests.Customers
 {
     public class CustomerMapperTests
     {
-        private Address address;
-        private Customer customer;
-
         public Customer InitiateCustomer()
         {
             var address = AddressBuilder.CreateAddress()
@@ -57,7 +54,7 @@ namespace Order2.API.Tests.Customers
             var addressMapper = new AddressMapper();
             var mapper = new CustomerMapper(addressMapper);
 
-            customer = InitiateCustomer();
+            var customer = InitiateCustomer();
 
             //when
             var customerDTO = mapper.ToDTO(customer);

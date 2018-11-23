@@ -2,6 +2,8 @@
 using Order2.Data.Exception;
 using Order2.Domain.Customers;
 using Order2.Domain.Exceptions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Order2.Services.Customers
 {
@@ -29,6 +31,22 @@ namespace Order2.Services.Customers
             if (success != 1)
             {
                 throw new DatabaseException("We weren't able to save the given customer in the database");
+            }
+
+            return customer;
+        }
+
+        public List<Customer> GetAllCustomers()
+        {
+            return _context.Customers.ToList();
+        }
+
+        public Customer GetCustomer(int id)
+        {
+            var customer = _context.Customers.FirstOrDefault(i => i.CustomerID == id);
+            if (customer == null)
+            {
+                throw new ObjectNotFoundException("This customer does not exist");
             }
 
             return customer;

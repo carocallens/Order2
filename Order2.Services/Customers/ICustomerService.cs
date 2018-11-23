@@ -8,5 +8,7 @@ namespace Order2.Services.Customers
     public interface ICustomerService
     {
         Customer CreateCustomer(Customer customer);
+        Customer GetCustomer(int id);
+        List<Customer> GetAllCustomers();
     }
 }

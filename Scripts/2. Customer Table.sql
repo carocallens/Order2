@@ -1,6 +1,9 @@
 use [Order2Db]
 go
 
+create Schema cus
+go
+
 create table Customers
 (
 	Customer_ID int identity(1,1),
